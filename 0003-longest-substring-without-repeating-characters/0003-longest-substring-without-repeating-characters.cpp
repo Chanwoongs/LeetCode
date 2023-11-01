@@ -12,7 +12,7 @@ public:
         
         while (idx2 < s.size())
         {
-            if (al[s[idx2]] != -1 && al[s[idx2]] >= idx1) idx1 = al[s[idx2]] + 1;
+            if (al[s[idx2]] >= idx1) idx1 = al[s[idx2]] + 1;
             al[s[idx2]] = idx2;
             
             int tempLength = idx2 - idx1 + 1;
