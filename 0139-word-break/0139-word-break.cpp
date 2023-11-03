@@ -21,7 +21,6 @@ bool wordBreak(string s, vector<string>& wordDict) {
             if (!res[prevIdx]) continue;
 
             string temp = s.substr(prevIdx, wordLen);
-            cout << "temp = " << temp << '\n';
             if (temp.size() != word.size()) continue;
 
             cout << temp << ' ' << word << '\n';
@@ -31,12 +30,6 @@ bool wordBreak(string s, vector<string>& wordDict) {
                 break;
             }
         }
-        for (int j = 0; j <= n; j++)
-        {
-            cout << res[j] << ' ';
-        }
-        cout << '\n';
-        cout << '\n';
     }
     return res[n];
 }
