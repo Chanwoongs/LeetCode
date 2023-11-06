@@ -4,8 +4,6 @@ public:
         int dp[304][5004];
         int n = coins.size();
         
-        memset(dp, 0, sizeof(dp));
-        
         for (int i = 0; i <= n; i++)
         {
             for (int j = 0; j <= amount; j++)
