@@ -25,11 +25,11 @@ public:
         temp->isEnd = true;
     }
     
- bool search(string word) {
+   bool search(string word) {
     queue<Node*> nodes;
     nodes.push(root);
     
-    for (char c : word) {
+    for (auto c : word) {
         int count = nodes.size();
         for (int i = 0; i < count; i++) {
             Node* cur = nodes.front();
