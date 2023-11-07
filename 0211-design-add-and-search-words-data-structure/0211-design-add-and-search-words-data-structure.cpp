@@ -25,46 +25,37 @@ public:
         temp->isEnd = true;
     }
     
-bool search(string word) {
+ bool search(string word) {
     queue<Node*> nodes;
     nodes.push(root);
-        
-    for (auto& c : word) {
-        int size = nodes.size();
-        if (size == 0) {
-            return false;
-        }
-                
-        if (c == '.') {
-            for (int i = 0; i < size; i++) {
-                auto cur = nodes.front();
-                nodes.pop();
-                    
+    
+    for (char c : word) {
+        int count = nodes.size();
+        for (int i = 0; i < count; i++) {
+            Node* cur = nodes.front();
+            nodes.pop();
+            
+            if (c == '.') {
                 for (int j = 0; j < 26; j++) {
                     if (cur->child[j] != nullptr) {
                         nodes.push(cur->child[j]);
                     }
                 }
-            }
-        } else {
-            for (int i = 0; i < size; i++) {
-                auto cur = nodes.front();
-                nodes.pop();
+            } else {
                 if (cur->child[c - 'a'] != nullptr) {
                     nodes.push(cur->child[c - 'a']);
                 }
             }
         }
+        if (nodes.empty()) return false;
     }
-
+    
     while (!nodes.empty()) {
-        auto node = nodes.front();
+        Node* node = nodes.front();
         nodes.pop();
-        if (node->isEnd) {
-            return true;
-        }
+        if (node->isEnd) return true;
     }
-
+    
     return false;
 }
 };
