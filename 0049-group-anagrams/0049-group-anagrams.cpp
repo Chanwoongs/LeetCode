@@ -1,33 +1,28 @@
 class Solution {
 public:
     vector<vector<string>> groupAnagrams(vector<string>& strs) {
-        vector<vector<string>> res;
-        map<string, vector<string>> mp;
-        int al[26];
-        
-        for (auto& s : strs)
+        vector<string> temp = strs;
+        set<string> st;
+
+        for (auto& str : temp)
         {
-            memset(al, 0, sizeof(al));
-            
-            string key;
-            for (auto& let : s)
-            {
-                al[let - 'a']++;
-            }
-            for (int i = 0; i < 26; i++)
-            {
-                if (al[i] > 0)
+            sort(str.begin(), str.end());
+            st.insert(str);
+        }
+
+        vector<vector<string>> res(st.size());
+        
+        int i = 0;
+        for (set<string>::iterator it = st.begin(); it != st.end(); it++) 
+        {
+	        for (int j = 0; j < temp.size(); j++)
+            {          
+                if (*it == temp[j])
                 {
-                    key += i + 'a';
-                    key += al[i];
+                    res[i].push_back(strs[j]);
                 }
             }
-            mp[key].emplace_back(s);
-        }
-        
-        for (auto& it : mp)
-        {
-            res.push_back(it.second);
+            i++;
         }
         
         return res;
